@@ -14,7 +14,7 @@ public class ExcepcionEstructuraFaltante extends IllegalArgumentException() {
      * Constructor que recibe un mensaje para el usuario.
      * @param mensaje el mensaje que verá el usuario cuando ocurra la excepción.
      */
-    publc ExcepcionEstructuraFaltante(String mensaje) {
+    public ExcepcionEstructuraFaltante(String mensaje) {
 	super(mensaje);
     }
 }
