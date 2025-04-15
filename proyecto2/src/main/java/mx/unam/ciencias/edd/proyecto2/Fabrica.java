@@ -14,8 +14,7 @@ public class Fabrica {
     public void crea() throws ExcepcionEstructuraFaltante {
 	if (piezas.esVacia())
 	    throw new ExcepcionEstructuraFaltante();
-	Iterator<String> iterador = piezas.iterator();
-	estructura = Estructura.getEstructura(iterador.next());
+	estructura = Estructura.getEstructura(piezas.eliminaPrimero());
 	if (estructura == null)
 	    throw new ExcepcionEstructuraFaltante();
 	
