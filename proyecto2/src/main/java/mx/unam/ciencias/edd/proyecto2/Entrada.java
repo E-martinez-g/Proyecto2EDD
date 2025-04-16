@@ -59,7 +59,7 @@ public class Entrada {
      */
     private String borraComentarios(String linea) {
 	if (!linea.contains("#"))
-	    return linea;
+	    return linea.trim();
 	for (int i = 0; i < linea.length(); i++)
 	    if (linea.charAt(i) == '#')
 		return linea.substring(0, --i).trim();
