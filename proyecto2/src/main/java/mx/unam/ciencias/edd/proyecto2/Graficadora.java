@@ -1,7 +1,5 @@
 package mx.unam.ciencias.edd.proyecto2;
 
-
-
 /**
  * Clase abstracta para graficadoras.
  */
@@ -16,27 +14,6 @@ public abstract class Graficadora {
      * Método para obtener la representación en cadena de la
      * representación gráfica de un objeto.
      */
-    public abstract String grafica();
+    public String grafica();
 
-    /**
-     * Verifica que todos los elementos recibidos sean de la forma
-     * esperada y regresa una lista en que los elementos son
-     * ahora números en lugar de cadenas.
-     * @param lista la lista de cadenas que queremos verificar.
-     * @throws {@link IllegalArgumentException} si alguno de los
-     *         elementos no es un número.
-     * @return una lista de los elementos como instancia de
-     *         {@link Integer}.
-     */
-    protected Lista<Integer> verificaElementos(Lista<String> lista)
-    throws IllegalArgumentException {
-	Lista<Integer> construible = new Lista<>();
-	for (String s : lista) {
-	    try {
-		construible.agrega(Integer.parseInt(s));
-	    } catch (NumberFormatException nfe) {
-		throw new IllegalArgumentException("Algún elemento recibido no es un número.");
-	    }
-	}
-    }
 }
