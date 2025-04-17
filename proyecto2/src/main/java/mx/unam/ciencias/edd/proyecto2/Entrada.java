@@ -25,8 +25,8 @@ public class Entrada {
 
     /**
      * Constructor para leer de un archivo.
-     * @throws {@link IOException} si algo falla al intentar acceder
-     *         al archivo.
+     * @throws {@link IOException} si algo falla al intentar acceder al
+     *         archivo.
      */
     public Entrada(String archivo) throws IOException {
 	lector = new BufferedReader(
@@ -35,20 +35,19 @@ public class Entrada {
     }
 
     /**
-     * Crea una lista con cada subcadena no vacía recibida a
-     * través de la entrada elegida.
-     * @return Una lista con cada subcadena no vacía de las
-     *         líneas recibidas.
+     * Crea una lista con cada subcadena no vacía recibida a través de
+     * la entrada elegida.
+     * @return Una lista con cada subcadena no vacía de las líneas
+     *         recibidas.
      */
     public Lista<String> recibe() {
 	String linea;
-	Lista<String> sinComentarios = new Lista<>();
-	while ((linea = lector.readLine()) != null) {
-	    String s = borraComentarios(linea);
-	    if (!borraComentarios.equals(""))
-		sinComentarios.agrega(s);
+	Lista<String> recibidas = new Lista<>();
+	while ((linea = borraComentarios(lector.readLine())) != null) {
+	    if (!linea.equals(""))
+		guardaSubcadenas(linea, recibidas);
 	}
-	return obtenSubcadenas(sinComentarios);
+	return recibidas;
     }
 
     /**
@@ -58,6 +57,8 @@ public class Entrada {
      * @return la cadena sin comentarios.
      */
     private String borraComentarios(String linea) {
+	if (linea == null)
+	    return null;
 	if (!linea.contains("#"))
 	    return linea.trim();
 	for (int i = 0; i < linea.length(); i++)
@@ -66,18 +67,14 @@ public class Entrada {
     }
 
     /**
-     * Regresa una lista con todas las subcadenas de las cadenas
-     * en una lista.
-     * @param lista la lista de cuyas cadenas se obtendrán las
-     *        subcadenas.
-     * @return una lista de todas las subcadenas.
+     * Guarda en una lista las subcadenas no vacías de la cadena
+     * recibida
+     * @param linea la cadena de la que se obtendrán las subcadenas.
+     * @param lista la lista en que se guardarán las subcadenas.
      */
-    private Lista<String> obtenSubcadenas(Lista<String> lista) {
-	Lista<String> trabajable = new Lista<>();
-        for (String s : lista) {
-	    for (String l : s.split(" "))
-		if (!l.equals(""))
-		    trabajable.agrega(l);
-	}
+    private void guerdaSubcadenas(String linea, Lista<String> lista) {
+	for (String l : linea.split(" "))
+	    if (!l.equals(""))
+		lista.agrega(l);
     }
 }

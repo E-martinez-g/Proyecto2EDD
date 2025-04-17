@@ -4,6 +4,7 @@ package mx.unam.ciencias.edd.proyecto2;
  * Enumeración para estructuras de datos.
  */
 public enum Estructura {
+    
     /** Lista */
     LISTA,
     /** Pila */
@@ -24,13 +25,13 @@ public enum Estructura {
     /**
      * Decide a qué estructura de datos se refiere la cadena
      * recibida.
-     * @param s la cadena que queremos relacionar a una
+     * @param linea la cadena que queremos relacionar a una
      *        estructura de datos.
      * @return la estructura adecuada o <code>null</code> si
      *         la cadena no es válida.
      */
-    public static Estructura getEstructura(String s) {
-	switch ( s ) {
+    public static Estructura getEstructura(String linea) {
+	switch ( linea ) {
 	case "Lista" : return Estructura.LISTA;
 	case "Pila" : return Estructura.PILA;
 	case "Cola" : return Estructura.COLA;

@@ -1,20 +1,20 @@
 package mx.unam.ciencias.edd.proyecto2;
 
 /**
- * Clase para excepciones de estructuras de datos inválidas.
+ * Clase para excepciones de estructuras de datos faltantes.
  */
-public class ExcepcionEstructuraFaltante extends IllegalArgumentException() {
+public class ExcepcionEstructuraNoValida extends IllegalArgumentException() {
 
     /**
      * Constructor vacío.
      */
-    public ExcepcionEstructuraFaltante() {}
+    public ExcepcionEstructuraNoValida() {}
 
     /**
      * Constructor que recibe un mensaje para el usuario.
      * @param mensaje el mensaje que verá el usuario cuando ocurra la excepción.
      */
-    public ExcepcionEstructuraFaltante(String mensaje) {
+    public ExcepcionEstructuraNoValida(String mensaje) {
 	super(mensaje);
     }
 }
