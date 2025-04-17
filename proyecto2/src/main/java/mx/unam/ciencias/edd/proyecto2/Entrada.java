@@ -11,6 +11,9 @@ import mx.unam.ciencias.edd.Lista;
  */
 public class Entrada {
 
+    /**
+     * El lector, se inicializa dependiendo del constructor.
+     */
     private BufferedReader lector;
 
     /**
@@ -61,9 +64,12 @@ public class Entrada {
 	    return null;
 	if (!linea.contains("#"))
 	    return linea.trim();
-	for (int i = 0; i < linea.length(); i++)
+	for (int i = 0; i < linea.length(); i++) {
+	    if (i == 0 && linea.charAt(i) == '#')
+		return "";
 	    if (linea.charAt(i) == '#')
 		return linea.substring(0, --i).trim();
+	}
     }
 
     /**

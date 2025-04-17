@@ -11,12 +11,17 @@ public class Fabrica {
 	this.piezas = piezas;
     }
 
-    public void crea() throws ExcepcionEstructuraFaltante {
+    /**
+     * Imprime en la consola el código para crear la estructura de datos escogida con
+     * los elementos pedidos.
+     */
+    public void crea() {
 	if (piezas.esVacia())
-	    throw new ExcepcionEstructuraFaltante();
-	estructura = Estructura.getEstructura(piezas.eliminaPrimero());
+	    throw new ExcepcionEstructuraNoValida("No se recibió ninguna estructura");
+	String s = piezas.eliminaPrimero();
+	estructura = Estructura.getEstructura(s);
 	if (estructura == null)
-	    throw new ExcepcionEstructuraFaltante();
+	    throw new ExcepcionEstructuraFaltante("La estructura" + s + "no es válida");
 	
     }
 }

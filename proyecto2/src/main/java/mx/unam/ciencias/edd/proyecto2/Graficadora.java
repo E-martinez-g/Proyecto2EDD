@@ -35,7 +35,7 @@ public abstract class Graficadora {
 	    try {
 		construible.agrega(Integer.parseInt(s));
 	    } catch (NumberFormatException nfe) {
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("Algún elemento recibido no es un número.");
 	    }
 	}
     }
