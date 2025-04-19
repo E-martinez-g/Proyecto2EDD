@@ -30,7 +30,7 @@ public class GraficadoraLista extends GraficadoraSucesion {
 	    for (Integer i : elementos) {
 		s += flechaA(c);
 		s += flechaS(c);
-		s += nodo(c);
+		s += caja(c);
 		s += contenido(i, c++);
 	    }
 	}
@@ -106,7 +106,7 @@ public class GraficadoraLista extends GraficadoraSucesion {
      * @param i el indice del nodo
      * @return la cadena del nodo.
      */
-    private String nodo(int i) {
+    @Override protected String caja(int i) {
 	int x = 140;
 	x += i * 350;
 	String s = "";
@@ -123,7 +123,7 @@ public class GraficadoraLista extends GraficadoraSucesion {
      * @param i el índice del nodo.
      * @return la cadena del contenido.
      */
-    private String contenido(Integer elemento, int i) {
+    @Override protected String contenido(Integer elemento, int i) {
 	int x = 265;
 	x += i * 350;
 	String s = "";

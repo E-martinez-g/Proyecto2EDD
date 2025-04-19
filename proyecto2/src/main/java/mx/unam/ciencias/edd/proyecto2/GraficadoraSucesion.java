@@ -23,4 +23,21 @@ public abstract class GraficadoraSucesion extends GraficadoraEstructura {
 	elementos = verificaElementos(lista);
 	lienzo = new Lienzo(estructura, elementos.getLongitud());
     }
+
+    /**
+     * Regresa la representación en cadena de la caja que se está
+     * graficando actualmente.
+     * @param i el índice de la caja que está siendo graficada.
+     * @return la cadena de la caja.
+     */
+    protected abstract String caja(int i);
+
+    /**
+     * Regresa la representación en cadena del elemento que se está
+     * graficando actualmente.
+     * @param elemento el elemento que se está graficando.
+     * @param i el índice del elemento que se está graficando.
+     * @return la cadena de la representación gráfica del elemento.
+     */
+    protected abstract String contenido(Integer elemento, int i);
 }
