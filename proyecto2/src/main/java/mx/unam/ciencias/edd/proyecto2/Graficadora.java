@@ -14,6 +14,6 @@ public abstract class Graficadora {
      * Método para obtener la representación en cadena de la
      * representación gráfica de un objeto.
      */
-    public String grafica();
+    public abstract String grafica();
 
 }

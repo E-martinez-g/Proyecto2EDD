@@ -6,6 +6,22 @@ package mx.unam.ciencias.edd.proyecto2;
 public abstract class GraficadoraEstructura extends Graficadora {
 
     /**
+     * Obtiene el ancho del lienzo.
+     * @return el ancho del lienzo.
+     */
+    public int anchoLienzo() {
+	return lienzo.getAncho();
+    }
+
+    /**
+     * Obtiene el alto del lienzo.
+     * @return el alto del lienzo.
+     */
+    public int altoLienzo() {
+	return lienzo.getAlto();
+    }
+    
+    /**
      * Verifica que todos los elementos recibidos sean de la forma
      * esperada y regresa una lista en que los elementos son
      * ahora números en lugar de cadenas.

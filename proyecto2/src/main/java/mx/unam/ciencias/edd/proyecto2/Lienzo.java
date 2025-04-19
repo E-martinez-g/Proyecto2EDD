@@ -74,7 +74,9 @@ public class Lienzo {
      * @param decisor el número de elementos en la pila.
      */
     private void tamanoPila(int decisor) {
-
+	ancho = 330;
+	alto = 10;
+	alto += decisor * 70;
     }
 
     /**
@@ -83,7 +85,9 @@ public class Lienzo {
      * @param decisor el número de elementos en la cola.
      */
     private void tamanoCola(int decisor) {
-
+	alto = 140;
+	ancho = 70;
+	ancho += decisor * 260; 
     }
 
     /**
@@ -92,7 +96,12 @@ public class Lienzo {
      * @param decisor el número de elementos en la lista.
      */
     private void tamanoLista(int decisor) {
-
+	alto = 140;
+	ancho = 80;
+	if (decisor > 0) {
+	    ancho += decisor * 350;
+	    ancho += 100;
+	}
     }
 
     /**

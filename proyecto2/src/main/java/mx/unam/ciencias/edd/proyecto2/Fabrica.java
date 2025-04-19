@@ -22,8 +22,8 @@ public class Fabrica {
 	estructura = Estructura.getEstructura(s);
 	if (estructura == null)
 	    throw new ExcepcionEstructuraFaltante("La estructura" + s + "no es válida");
-	Graficadora graficadora = graficadora(estructura, piezas);
-	System.out.println(graficadora.grafica());
+	GraficadoraEstructura graficadora = graficadora(estructura, piezas);
+	System.out.print(graficadora.grafica());
     }
 
     /**
@@ -33,17 +33,17 @@ public class Fabrica {
      *        de la estructura.
      * @return un objeto instancia de una clase que extiende a {@link Graficadora}.
      */
-     private Graficadora graficadora(Estructura estructura, Lista<String> elementos) {
+     private GraficadoraEstructura graficadora(Estructura estructura, Lista<String> elementos) {
 	switch (estructura) {
-	    case Estructura.LISTA : return new GraficadoraLista(elementos);
-	    case Estructura.PILA : return new GraficadoraPila(elementos);
-  	    case Estructura.COLA : return new GraficadoraCola(elementos);
-	    case Estructura.GRAFICA : return new GraficadoraGrafica(elementos);
-	    case Estructura.ABC : return new GraficadoraArbolCompleto(elementos);
-	    case Estructura.ABO : return new GraficadoraArbolOrdenado(elementos);
-	    case Estructura.ARN : return new GraficadoraArbolRojinegro(elementos);
-	    case Estructura.AAVL : return new GraficadoraArbolAVL(elementos);
-	    case default : return null;
-     }	
+	case Estructura.LISTA : return new GraficadoraLista(elementos);
+	case Estructura.PILA : return new GraficadoraPila(elementos);
+	case Estructura.COLA : return new GraficadoraCola(elementos);
+	case Estructura.GRAFICA : return new GraficadoraGrafica(elementos);
+	case Estructura.ABC : return new GraficadoraArbolCompleto(elementos);
+	case Estructura.ABO : return new GraficadoraArbolOrdenado(elementos);
+	case Estructura.ARN : return new GraficadoraArbolRojinegro(elementos);
+	case Estructura.AAVL : return new GraficadoraArbolAVL(elementos);
+	case default : return null;
+	}
      }
 }
