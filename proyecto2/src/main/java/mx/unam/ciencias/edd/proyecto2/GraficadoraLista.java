@@ -9,16 +9,15 @@ public class GraficadoraLista extends GraficadoraSucesion {
 
     /**
      * Constructor para graficadoras de Listas.
-     * @param lista la lista con los elementos en forma de
-     *        cadena.
+     * @param lista la lista con los elementos en forma de cadena.
      */
     public GraficadoraLista(Lista<String> lista) {
 	super(lista, Estructura.LISTA);
     }
 
     /**
-     * Regresa la representación en cadena de la
-     * representación gráfica de la lista.
+     * Regresa la representación en cadena de la representación gráfica
+     * de la lista.
      * @return la representación en cadena de la
      *         representación gráfica de la lista.
      */
@@ -39,8 +38,7 @@ public class GraficadoraLista extends GraficadoraSucesion {
 
     /**
      * Regresa la punta de la flecha.
-     * @return una cadena con la definición de la
-     *         punta de la flecha.
+     * @return una cadena con la definición de la punta de la flecha.
      */
     private String punta() {
 	String s = "";
@@ -55,9 +53,8 @@ public class GraficadoraLista extends GraficadoraSucesion {
     }
 
     /**
-     * Regresa la cadena correspondiente a la flecha
-     * anterior del nodo que se está graficando
-     * actualmente.
+     * Regresa la cadena correspondiente a la flecha anterior del
+     * nodo que se está graficando actualmente.
      * @param i el índice del nodo.
      * @return la cadena de la flecha anterior.
      */
@@ -78,9 +75,8 @@ public class GraficadoraLista extends GraficadoraSucesion {
     }
 
     /**
-     * Regresa la cadena correspondiente a la flecha
-     * siguiente del nodo que se está graficando
-     * actualmente.
+     * Regresa la cadena correspondiente a la flecha siguiente del
+     * nodo que se está graficando actualmente.
      * @param i el índice del nodo.
      * @return la cadena de la flecha siguiente.
      */
@@ -101,8 +97,8 @@ public class GraficadoraLista extends GraficadoraSucesion {
     }
 
     /**
-     * Regresa la cadena correspondiente al nodo que
-     * se está graficando actualmente.
+     * Regresa la cadena correspondiente al nodo que se está
+     * graficando actualmente.
      * @param i el indice del nodo
      * @return la cadena del nodo.
      */
@@ -117,8 +113,8 @@ public class GraficadoraLista extends GraficadoraSucesion {
     }
 
     /**
-     * Regresa la cadena correspondiente al elemento
-     * del nodo que se está graficando actualmente.
+     * Regresa la cadena correspondiente al elemento del nodo que
+     * se está graficando actualmente.
      * @param elemento el elemento del nodo.
      * @param i el índice del nodo.
      * @return la cadena del contenido.
