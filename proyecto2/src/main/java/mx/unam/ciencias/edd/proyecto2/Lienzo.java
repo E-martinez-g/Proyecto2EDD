@@ -119,6 +119,11 @@ public class Lienzo {
      * @param decisor la altura del árbol.
      */
     private void tamanoArbol(int decisor) {
-
+	alto = 450;
+	alto += 450 * decisor;
+	ancho = 450;
+	for (int i = 0; i < decisor; i++) {
+	    ancho *= 2;
+	}
     }
 }

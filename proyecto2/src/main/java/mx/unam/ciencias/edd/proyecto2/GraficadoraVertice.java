@@ -1,18 +1,17 @@
 package mx.unam.ciencias.edd.proyecto2;
 
 /**
- * Clase abstracta para graficadoras de vertices.
+ * Interfaz para graficadoras de vertices.
  */
-public abstract class GraficadoraVertice extends Graficadora {
+public interface class GraficadoraVertice extends Graficadora {
 
     /**
-     * El elemento que estará en el vértice.
+     * Crea el vértice.
      */
-    protected int elemento;
+    protected String vertice();
 
     /**
-     * Crea las lineas que conectan al vértice con los
-     * vértices a los que es adyacente.
+     * Crea el contenido del vértice.
      */
-    public abstract String conecta();
+    protected String contenido();
 }
