@@ -1,2 +1,0 @@
-package mx.unam.ciencias.edd.proyecto2;
-
