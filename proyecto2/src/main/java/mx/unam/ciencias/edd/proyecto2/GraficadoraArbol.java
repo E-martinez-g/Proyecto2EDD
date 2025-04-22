@@ -3,6 +3,9 @@ package mx.unam.ciencias.edd.proyecto2;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
 
+/**
+ * Clase para graficadoras de árboles binarios.
+ */
 public abstract class GraficadoraArbol extends GraficadoraEstructura {
  
     /**
@@ -47,7 +50,7 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	 * @param y el valor de y para el vértice.
 	 * @param lienzo el espacio en que se graficará el vértice.
 	 */
-	public GraficadoraVerticeArbol(VerticeArbolBinario<Integer> vertice,
+	protected GraficadoraVerticeArbol(VerticeArbolBinario<Integer> vertice,
 				       int num, int den, int y, Lienzo lienzo) {
 	    this.vertice = vertice;
 	    this.num = num;
@@ -93,8 +96,8 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	    String s = "";
 	    s += "<text fill='black' font-family='sans-serif' font-size='30' ";
 	    s += "text-anchor='middle' x='" + x + "' y='" + y + "'>";
-	    s += vertice.get() + "</text>\n"
-		}
+	    s += vertice.get() + "</text>\n";
+	}
 	
 	/**
 	 * Regresa la cadena de las referencias izquierdo y derecho del vértice.
@@ -189,6 +192,6 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
      * @return la representación en cadena de la representación gráfica del árbol.
      */
     @Override public String grafica() {
-	return new GraficadoraVerticeArbol(raiz, 1, 2, 225, lienzo).grafica();
+	return gva(raiz, 1, 2, 225, lienzo).grafica();
     }
 }

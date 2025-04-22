@@ -10,7 +10,7 @@ import mx.unam.ciencias.edd.VerticeArbolBinario;
 public class GraficadoraArbolOrdenado extends GraficadoraArbol {
 
     /**
-     * Constructor para Graficadoras de árboles ordenados.
+     * Constructor para graficadoras de árboles ordenados.
      */
     public GraficadoraArbolCompleto(Lista<String> lista) throws IllegalArgumentException {
 	arbol = new ArbolBinarioOrdenado<Integer>(verificaElementos(lista));
