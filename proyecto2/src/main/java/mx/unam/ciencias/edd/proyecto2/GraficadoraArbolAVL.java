@@ -43,6 +43,8 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	 */
 	@Override public String grafica() {
 	    String s = "";
+	    if (vertice == null)
+		return s;
 	    s += conecta();
 	    s += vertice();
 	    s += contenido();
@@ -102,5 +104,22 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 					      int num, int den, int y, Lienzo lienzo) {
 	    return new GraficadoraVerticeArbolAVL(vertice, num, den, y, lienzo);
 	}
+    }
+    
+    /**
+     * Constructor para graficadoras de árboles AVL.
+     */
+    public GraficadoraArbolRojinegro(Lista<String> lista) throws IllegalArgumentException {
+	arbol = new ArbolAVL<Integer>(verificaElementos(lista));
+	raiz = arbol.raiz();
+	lienzo = new Lienzo(Estructura.ARN, arbol.altura());
+    }
+    
+    /**
+     * Regresa la representación en cadena de la representación gráfica del árbol.
+     * @return la representación en cadena de la representación gráfica del árbol.
+     */
+    public String grafica() {
+	return new GraficadoraVerticeArbolAVL(raiz, 1, 2, 225, lienzo).grafica();
     }
 }

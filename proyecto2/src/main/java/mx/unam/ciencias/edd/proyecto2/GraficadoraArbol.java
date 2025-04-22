@@ -70,6 +70,8 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	 */
 	@Override public String grafica() {
 	    String s = "";
+	    if (vertice == null)
+		return s;
 	    s += conecta();
 	    s += vertice();
 	    s += contenido();
