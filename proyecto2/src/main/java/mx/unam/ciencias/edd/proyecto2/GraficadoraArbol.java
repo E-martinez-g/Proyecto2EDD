@@ -183,5 +183,12 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
      * Raíz del árbol binario.
      */
     protected VerticeArbolBinario<Integer> raiz;
-    
+
+    /**
+     * Regresa la representación en cadena de la representación gráfica del árbol.
+     * @return la representación en cadena de la representación gráfica del árbol.
+     */
+    @Override public String grafica() {
+	return new GraficadoraVerticeArbol(raiz, 1, 2, 225, lienzo).grafica();
+    }
 }

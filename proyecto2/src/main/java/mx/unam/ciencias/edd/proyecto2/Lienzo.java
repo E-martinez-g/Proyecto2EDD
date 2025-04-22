@@ -120,7 +120,8 @@ public class Lienzo {
      */
     private void tamanoArbol(int decisor) {
 	alto = 450;
-	alto += 450 * decisor;
+	if (decisor > 0)
+	    alto += 450 * decisor;
 	ancho = 450;
 	for (int i = 0; i < decisor; i++) {
 	    ancho *= 2;
