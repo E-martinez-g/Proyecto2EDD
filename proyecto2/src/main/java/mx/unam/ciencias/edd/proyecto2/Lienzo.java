@@ -114,7 +114,8 @@ public class Lienzo {
 	double radio = 450;
 	radio /= 2;
 	radio /= Math.sin(Math.PI/decisor);
-	alto += radio * 2;
+	alto += (int) radio + 1;
+	alto *= 2;
 	ancho = alto;
     }
 

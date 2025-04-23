@@ -21,7 +21,7 @@ public class Fabrica {
 	String s = piezas.eliminaPrimero();
 	estructura = Estructura.getEstructura(s);
 	if (estructura == null)
-	    throw new ExcepcionEstructuraFaltante("La estructura" + s + "no es válida");
+	    throw new ExcepcionEstructuraNoValida("La estructura" + s + "no es válida");
 	GraficadoraEstructura graficadora = graficadora(estructura, piezas);
 	System.out.print(graficadora.grafica());
     }
