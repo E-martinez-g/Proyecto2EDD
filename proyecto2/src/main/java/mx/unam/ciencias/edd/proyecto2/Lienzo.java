@@ -110,7 +110,12 @@ public class Lienzo {
      * @param decisor el número de elementos de la gráfica.
      */
     private void tamanoGrafica(int decisor) {
-
+	alto = 450;
+	double radio = 450;
+	radio /= 2;
+	radio /= Math.sin(Math.PI/decisor);
+	alto += radio * 2;
+	ancho = alto;
     }
 
     /**
