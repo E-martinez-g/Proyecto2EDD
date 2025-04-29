@@ -31,16 +31,6 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	protected int den;
 	
 	/**
-	 * La coordenada en y del vértice.
-	 */
-	protected int y;
-	
-	/**
-	 * La coordenada en x del vértice.
-	 */
-	protected int x;
-	
-	/**
 	 * Constructor para graficadoras de vértices de árboles.
 	 * @param vertice el vértice a graficar.
 	 * @param num el numerador de la fracción que se usará para calcular la
@@ -105,7 +95,7 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	 * Regresa la cadena de las referencias izquierdo y derecho del vértice.
 	 * @return la cadena de las referencias izquierdo y derecho del vértice.
 	 */
-	private String conecta() {
+	@Override protected String conecta() {
 	    String s = "";
 	    int y2 = y + 450;
 	    int x2;
@@ -121,22 +111,6 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 		x2 /= denominador * 2;
 		s += linea(x, y, x2, y2);
 	    }
-	    return s;
-	}
-	
-	/**
-	 * Construye una linea a partir de 4 números.
-	 * @param x1 la coordenada en x del primer punto.
-	 * @param y1 la coordenada en y del primer punto.
-	 * @param x2 la coordenada en x del segundo punto.
-	 * @param y2 la coordenada en y del segundo punto.
-	 * @return la cadena de una linea que empieza en el primer punto y
-	 *         termina en el segundo.
-	 */
-	private String linea(int x1, int y1, int x2, int y2) {
-	    String s = "";
-	    s += "<line stroke='black' stroke-width='3' x1='" + x1 + "' ";
-	    s += "y1='" + y1 + "' x2='" + x2 + "' y2='" + y2 + "' /\n>";
 	    return s;
 	}
 

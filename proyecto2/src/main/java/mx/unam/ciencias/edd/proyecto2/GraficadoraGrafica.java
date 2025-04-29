@@ -10,10 +10,67 @@ import java.util.Iterator;
  */
 public class GraficadoraGrafica extends GraficadoraEstructura {
 
-    //sonVecinos(Integer a, Integer b)
-    //get()
-    //adyace(GraficadoraVerticeGrafica gvg)
+    /**
+     * Clase interna para graficadoras de vértices de gráficas.
+     */
+    private class GraficadoraVerticeGrafica extends GraficadoraVertice {
 
+	/**
+	 * El vértice.
+	 */
+	private VerticeGrafica<Integer> vertice;
+
+	/**
+	 * El número del vértice.
+	 */
+	private int indice;
+
+	/**
+	 * La lista de graficadoras de vértices.
+	 */
+	private Lista<GraficadoraVerticeGrafica> gvgs;
+
+	/**
+	 * Regresa el elemento del vértice.
+	 * @return el elemento del vértice.
+	 */
+	private Integer get() {
+	    return vertice.get();
+	}
+
+	/**
+	 * Regresa la cadena del vértice y sus aristas adyacentes.
+	 * @return la cadena del vértice y sus aristas adyacentes.
+	 */
+	@Override protected String grafica() {
+
+	}
+
+	/**
+	 * Regresa la cadena del vértice.
+	 * @return la cadena del vértice.
+	 */
+	@Override protected String vertice() {
+
+	}
+	
+	/**
+	 * Regresa la cadena del contenido del vértice.
+	 * @return la cadena del contenido del vértice.
+	 */
+	@Override protected String contenido() {
+
+	}
+
+	/**
+	 * Regresa la cadena de las aristas del vértice.
+	 * @return la cadena de las aristas del vértice.
+	 */
+	@Override protected String conecta() {
+	    
+	}
+    }
+    
     /**
      * Gráfica a graficar.
      */
@@ -61,7 +118,7 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	    if (a.equals(b))
 		if (separados.contains(a))
 		    throw new ExcepcionGraficaNoValida("No se puede desconectar dos veces a un vértice.");
-		else if (vertice(a).getGrado() > 0)
+		else if (grafica.vertice(a).getGrado() > 0)
 		    throw new ExcepcionGraficaNoValida("No se puede desconectar un vértice que fue previamente conectado.");
 		else
 		    separados.agrega(a);
@@ -75,5 +132,22 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 			throw new ExcepcionGraficaNoValida("No se puede volver a conectar un par de elementos ya conectados.");
 		    }
 	}
+    }
+
+    /**
+     * Regresa la representación en cadena de la representación gráfica de la gráfica.
+     * @return la representación en cadena de la representación gráfica de la gráfica.
+     */
+    @Override public String grafica() {
+	String s = "";
+	Lista<GraficadoraVerticeGrafica> gvgs = new Lista<>();
+	int c = 0;
+	for (Integer integer : grafica)
+	    gvgs.agrega(new GraficadoraVerticeGrafica(gvgs, c++, grafica.vertice(integer), lienzo));
+	for (GraficadoraVerticeGrafica gvg : gvgs) {
+	    s += gvg.grafica();
+	    grafica.elimina(gvg.get());
+	}
+	return s;
     }
 }
