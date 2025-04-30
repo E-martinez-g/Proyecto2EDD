@@ -32,12 +32,18 @@ public abstract class GraficadoraVertice extends Graficadora {
     }
 
     /**
-     * Crea el vértice.
+     * Regresa la cadena del vértice.
+     * @return la cadena del vértice. 
      */
-    protected abstract String vertice();
+    protected String vertice() {
+	String s = "";
+	s += "<circle r='125' fill='white' stroke='black' ";
+	s += "stroke-width='3' cx='" + x + "' cy='" + y + "' />\n";
+	return s;
+    }
 
     /**
-     * Crea el contenido del vértice.
+     * Crea la cadena del contenido del vértice.
      */
     protected abstract String contenido();
 

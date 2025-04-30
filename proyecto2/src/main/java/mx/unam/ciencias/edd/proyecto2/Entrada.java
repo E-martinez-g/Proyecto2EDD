@@ -23,7 +23,7 @@ public class Entrada {
      */
     public Entrada() throws IOException {
 	lector = new BufferedReader(
-		     new InputStreamReader(System.in, "utf-8"))
+		     new InputStreamReader(System.in, "utf-8"));
     }
 
     /**
@@ -34,7 +34,7 @@ public class Entrada {
     public Entrada(String archivo) throws IOException {
 	lector = new BufferedReader(
 		     new InputStreamReader(
-			 new FileInputStream(archivo), "utf-8"))
+			 new FileInputStream(archivo), "utf-8"));
     }
 
     /**
@@ -43,7 +43,7 @@ public class Entrada {
      * @return Una lista con cada subcadena no vacía de las líneas
      *         recibidas.
      */
-    public Lista<String> recibe() {
+    public Lista<String> recibe() throws IOException {
 	String linea;
 	Lista<String> recibidas = new Lista<>();
 	while ((linea = borraComentarios(lector.readLine())) != null) {
@@ -70,6 +70,7 @@ public class Entrada {
 	    if (linea.charAt(i) == '#')
 		return linea.substring(0, --i).trim();
 	}
+	return null;
     }
 
     /**
@@ -78,7 +79,7 @@ public class Entrada {
      * @param linea la cadena de la que se obtendrán las subcadenas.
      * @param lista la lista en que se guardarán las subcadenas.
      */
-    private void guerdaSubcadenas(String linea, Lista<String> lista) {
+    private void guardaSubcadenas(String linea, Lista<String> lista) {
 	for (String l : linea.split(" "))
 	    if (!l.equals(""))
 		lista.agrega(l);

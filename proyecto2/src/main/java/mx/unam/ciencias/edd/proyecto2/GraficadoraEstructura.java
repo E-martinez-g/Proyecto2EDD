@@ -1,5 +1,7 @@
 package mx.unam.ciencias.edd.proyecto2;
 
+import mx.unam.ciencias.edd.Lista;
+
 /**
  * Clase abstracta para graficadoras de estructuras de datos.
  */
@@ -41,5 +43,6 @@ public abstract class GraficadoraEstructura extends Graficadora {
 		throw new IllegalArgumentException("Algún elemento recibido no es un número.");
 	    }
 	}
+	return construible;
     }
 }

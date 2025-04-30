@@ -3,6 +3,7 @@ package mx.unam.ciencias.edd.proyecto2;
 import mx.unam.ciencias.edd.ArbolAVL;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
+import mx.unam.ciencias.edd.Lista;
 
 /**
  * Clase para graficadoras de árboles AVL.
@@ -17,7 +18,7 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	/**
 	 * Booleano para ayudar a posicionar la altura y el balance.
 	 */
-	private bool esIzquierdo;
+	private boolean esIzquierdo;
 	
 	/**
 	 * Constructor para graficadoras de vértices de árboles AVL.
@@ -68,6 +69,7 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	    else
 		s += "x='" + (x + 125) + "'>";
 	    s += "[" + altura + "/" + balance + "]</text>\n";
+	    return s;
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	 * @return <code>true</code> si el vértice es el hijo izquierdo de su padre,
 	 *         <code>false</code> en otro caso.
 	 */
-	private bool buscaLado() {
+	private boolean buscaLado() {
 	    return vertice.padre() == null || vertice.padre().izquierdo() == vertice;
 	}
 
@@ -87,39 +89,31 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	private int altura(VerticeArbolBinario<Integer> vertice) {
 	    return vertice == null ? -1 : vertice.altura();
 	}
-
-	/**
-	 * Regresa una graficadora de vértices con los parámetros recibidos.
-	 * @param vertice el vértice a graficar.
-	 * @param num el numerador de la fracción que se usará para calcular la posición
-	 *        del vértice en el lienzo.
-	 * @param den el denominador de la fracción que se usará para calcular la posición
-	 *        del vértice en el lienzo.
-	 * @param y el valor de y para el vértice.
-	 * @param lienzo el espacio en que se graficará el vértice.
-	 * @return una objeto instancia de {@link GraficadoraVerticeArbolAVL}.
-	 */
-	@Override
-	protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
-					      int num, int den, int y, Lienzo lienzo) {
-	    return new GraficadoraVerticeArbolAVL(vertice, num, den, y, lienzo);
-	}
     }
     
     /**
      * Constructor para graficadoras de árboles AVL.
      */
-    public GraficadoraArbolRojinegro(Lista<String> lista) throws IllegalArgumentException {
+    public GraficadoraArbolAVL(Lista<String> lista) throws IllegalArgumentException {
 	arbol = new ArbolAVL<Integer>(verificaElementos(lista));
 	raiz = arbol.raiz();
 	lienzo = new Lienzo(Estructura.ARN, arbol.altura());
     }
     
     /**
-     * Regresa la representación en cadena de la representación gráfica del árbol.
-     * @return la representación en cadena de la representación gráfica del árbol.
+     * Regresa una graficadora de vértices con los parámetros recibidos.
+     * @param vertice el vértice a graficar.
+     * @param num el numerador de la fracción que se usará para calcular la posición
+     *        del vértice en el lienzo.
+     * @param den el denominador de la fracción que se usará para calcular la posición
+     *        del vértice en el lienzo.
+     * @param y el valor de y para el vértice.
+     * @param lienzo el espacio en que se graficará el vértice.
+     * @return una objeto instancia de {@link GraficadoraVerticeArbolAVL}.
      */
-    public String grafica() {
-	return new GraficadoraVerticeArbolAVL(raiz, 1, 2, 225, lienzo).grafica();
+    @Override
+    protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
+					  int num, int den, int y, Lienzo lienzo) {
+	return new GraficadoraVerticeArbolAVL(vertice, num, den, y, lienzo);
     }
 }

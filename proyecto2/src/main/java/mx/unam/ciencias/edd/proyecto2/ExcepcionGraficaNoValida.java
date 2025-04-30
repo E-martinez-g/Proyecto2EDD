@@ -14,7 +14,7 @@ public class ExcepcionGraficaNoValida extends ExcepcionEstructuraNoValida {
      * Constructor que recibe un mensaje para el usuario.
      * @param mensaje el mensaje que verá el usuario cuando ocurra la excepción.
      */
-    public ExcepcionGraficaNoValida() {
+    public ExcepcionGraficaNoValida(String mensaje) {
 	super(mensaje);
     }
 }

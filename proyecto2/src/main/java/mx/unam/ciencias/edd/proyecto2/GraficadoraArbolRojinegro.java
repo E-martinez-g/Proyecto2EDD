@@ -3,6 +3,7 @@ package mx.unam.ciencias.edd.proyecto2;
 import mx.unam.ciencias.edd.ArbolRojinegro;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
+import mx.unam.ciencias.edd.Lista;
 
 /**
  * Clase para graficadoras de árboles rojinegros.
@@ -32,20 +33,20 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
 	protected GraficadoraVerticeArbolRojinegro(VerticeArbolBinario<Integer> vertice,
 						   int num, int den, int y, Lienzo lienzo) {
 	    super(vertice, num, den, y, lienzo);
-	    color = buscaColor();
+	    color = setColor();
 	}
 	
 	/**
 	 * Inicializa la cadena del color.
 	 */
 	private String setColor() {
-	    try {
-		switch(((ArbolRojinegro) arbol).getColor(vertice)) {
-		case Color.ROJO : return "red";
-		case Color.NEGRO : return "black";
-		case default : return "black";
-		}
-	    } catch (ClassCastException cce) {/* No puede pasar */}
+	    @SuppressWarnings("unchecked")
+		ArbolRojinegro<Integer> arn = (ArbolRojinegro) arbol;	
+	    switch(arn.getColor(vertice)) {
+	    case ROJO : return "red";
+	    case NEGRO : return "black";
+	    default : return null;
+	    }
 	}
 
 	/**
@@ -68,23 +69,7 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
 	    s += "<text fill='white' font-family='sans-serif' ";
 	    s += "font-size='30' text-anchor='middle' x='" + x;
 	    s += "' y='" + y + "'>" + vertice.get() + "</text>\n";
-	}
-
-	/**
-	 * Regresa una graficadora de vértices con los parámetros recibidos.
-	 * @param vertice el vértice a graficar.
-	 * @param num el numerador de la fracción que se usará para calcular la posición
-	 *        del vértice en el lienzo.
-	 * @param den el denominador de la fracción que se usará para calcular la posición
-	 *        del vértice en el lienzo.
-	 * @param y el valor de y para el vértice.
-	 * @param lienzo el espacio en que se graficará el vértice.
-	 * @return una objeto instancia de {@link GraficadoraVerticeArbolRojinegro}.
-	 */
-	@Override
-	protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
-					      int num, int den, int y, Lienzo lienzo) {
-	    return new GraficadoraVerticeArbolRojinegro(vertice, num, den, y, lienzo);
+	    return s;
 	}
     }
 
@@ -98,10 +83,19 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
     }
 
     /**
-     * Regresa la representación en cadena de la representación gráfica del árbol.
-     * @return la representación en cadena de la representación gráfica del árbol.
+     * Regresa una graficadora de vértices con los parámetros recibidos.
+     * @param vertice el vértice a graficar.
+     * @param num el numerador de la fracción que se usará para calcular la posición
+     *        del vértice en el lienzo.
+     * @param den el denominador de la fracción que se usará para calcular la posición
+     *        del vértice en el lienzo.
+     * @param y el valor de y para el vértice.
+     * @param lienzo el espacio en que se graficará el vértice.
+     * @return una objeto instancia de {@link GraficadoraVerticeArbolRojinegro}.
      */
-    public String grafica() {
-	return new GraficadoraVerticeArbolRojinegro(raiz, 1, 2, 225, lienzo).grafica();
+    @Override
+    protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
+					  int num, int den, int y, Lienzo lienzo) {
+	return new GraficadoraVerticeArbolRojinegro(vertice, num, den, y, lienzo);
     }
 }

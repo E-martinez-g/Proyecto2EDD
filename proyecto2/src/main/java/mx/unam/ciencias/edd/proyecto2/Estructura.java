@@ -40,7 +40,7 @@ public enum Estructura {
 	case "ArbolRojiNegro" : return Estructura.ARN;
 	case "ArbolAVL" : return Estructura.AAVL;
 	case "Grafica" : return Estructura.GRAFICA;
-	case default : return null;
+	default : return null;
 	}
     }
 }

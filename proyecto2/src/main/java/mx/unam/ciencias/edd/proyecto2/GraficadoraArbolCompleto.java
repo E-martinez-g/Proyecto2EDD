@@ -3,6 +3,7 @@ package mx.unam.ciencias.edd.proyecto2;
 import mx.unam.ciencias.edd.ArbolBinarioCompleto;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
+import mx.unam.ciencias.edd.Lista;
 
 /**
  * Clase para graficadoras de árboles completos.

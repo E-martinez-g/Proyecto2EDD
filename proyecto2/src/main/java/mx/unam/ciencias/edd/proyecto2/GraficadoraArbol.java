@@ -70,17 +70,6 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	}
 	
 	/**
-	 * Regresa la cadena del vértice.
-	 * @return la cadena del vértice.
-	 */
-	@Override protected String vertice() {
-	    String s = "";
-	    s += "<circle r='125' fill='white' stroke='black' ";
-	    s += "stroke-width='3' cx='" + x + "' cy='" + y + "' />\n";
-	    return s;
-	}
-	
-	/**
 	 * Regresa la cadena del contenido del vértice.
 	 * @return la cadena del contenido del vértice.
 	 */
@@ -89,6 +78,7 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	    s += "<text fill='black' font-family='sans-serif' font-size='30' ";
 	    s += "text-anchor='middle' x='" + x + "' y='" + y + "'>";
 	    s += vertice.get() + "</text>\n";
+	    return s;
 	}
 	
 	/**
@@ -101,14 +91,14 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	    int x2;
 	    if (vertice.hayDerecho()) {
 		x2 = lienzo.getAncho();
-		x2 *= (numerador * 2) + 1;
-		x2 /= denominador * 2;
+		x2 *= (num * 2) + 1;
+		x2 /= den * 2;
 		s += linea(x, y, x2, y2);
 	    }
 	    if (vertice.hayIzquierdo()) {
 		x2 = lienzo.getAncho();
-		x2 *= (numerador * 2) - 1;
-		x2 /= denominador * 2;
+		x2 *= (num * 2) - 1;
+		x2 /= den * 2;
 		s += linea(x, y, x2, y2);
 	    }
 	    return s;
@@ -119,38 +109,23 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
 	 * Este método recorre el árbol recursivamente en dfs-preorder.
 	 * @return la cadena de los hijos.
 	 */
-	private String hijos() {
+	protected String hijos() {
 	    String s = "";
 	    if (vertice.hayIzquierdo()) {
 		s += gva(vertice.izquierdo(),
-			 ((numerador * 2) - 1),
-			 (denominador * 2),
+			 ((num * 2) - 1),
+			 (den * 2),
 			 (y + 450), lienzo).grafica();
 	    }
 	    if (vertice.hayDerecho()) {
 		s += gva(vertice.derecho(),
-			 ((numerador * 2) + 1),
-			 (denominador * 2),
+			 ((num * 2) + 1),
+			 (den * 2),
 			 (y + 450), lienzo).grafica();
 	    }
 	    return s;
 	}
 	
-	/**
-	 * Regresa una graficadora de vértices con los parámetros recibidos.
-	 * @param vertice el vértice a graficar.
-	 * @param num el numerador de la fracción que se usará para calcular la
-	 *        posición del vértice en el lienzo.
-	 * @param den el denominador de la fracción que se usará para calcular
-	 *        la posición del vértice en el lienzo.
-	 * @param y el valor de y para el vértice.
-	 * @param lienzo el espacio en que se graficará el vértice.
-	 * @return una objeto instancia de {@link GraficadoraVerticeArbol}.
-	 */
-	protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
-					      int num, int den, int y, Lienzo lienzo) {
-	    return new GraficadoraVerticeArbol(vertice, num, den, y, lienzo);
-	}
     }
 	
     /**
@@ -169,5 +144,21 @@ public abstract class GraficadoraArbol extends GraficadoraEstructura {
      */
     @Override public String grafica() {
 	return gva(raiz, 1, 2, 225, lienzo).grafica();
+    }
+    
+    /**
+     * Regresa una graficadora de vértices con los parámetros recibidos.
+     * @param vertice el vértice a graficar.
+     * @param num el numerador de la fracción que se usará para calcular la
+     *        posición del vértice en el lienzo.
+     * @param den el denominador de la fracción que se usará para calcular
+     *        la posición del vértice en el lienzo.
+     * @param y el valor de y para el vértice.
+     * @param lienzo el espacio en que se graficará el vértice.
+     * @return una objeto instancia de {@link GraficadoraVerticeArbol}.
+     */
+    protected GraficadoraVerticeArbol gva(VerticeArbolBinario<Integer> vertice,
+					  int num, int den, int y, Lienzo lienzo) {
+	return new GraficadoraVerticeArbol(vertice, num, den, y, lienzo);
     }
 }

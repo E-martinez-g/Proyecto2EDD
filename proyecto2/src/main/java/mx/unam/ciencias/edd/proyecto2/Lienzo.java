@@ -32,7 +32,8 @@ public class Lienzo {
      */
     public Lienzo(Estructura estructura, int decisor) {
 	this.estructura = estructura;
-	calculaTamano(decisor);
+	ancho = calculaAncho(decisor);
+	alto = calculaAlto(decisor);
     }
 	
     /**
@@ -52,85 +53,106 @@ public class Lienzo {
     }
 
     /**
-     * Calcula los valores de altura y ancho.
+     * Calcula el alto del lienzo a partir de un número.
+     * @param decisor el número importante a partir del cuál se calculará
+     *        el alto.
+     * @return el alto del lienzo
      */
-    private void calculaTamano(int decisor) {
+    private int calculaAlto(int decisor) {
 	switch (estructura) {
-	case Estructura.PILA : tamanoPila(int decisor);
-	    break;
-	case Estructura.COLA : tamanoCola(int decisor);
-	    break;
-	case Estructura.LISTA : tamanoLista(int decisor);
-	    break;
-	case Estructura.GRAFICA : tamanoGrafica(int decisor);
-	    break;
-	case default : tamanoArbol();
+	case PILA : return altoPila(decisor);
+	case COLA : return 140;
+	case LISTA : return 140;
+	case GRAFICA : return tamanoGrafica(decisor);
+	default : return altoArbol(decisor);
+	}
+    }
+    
+    /**
+     * Calcula el ancho del lienzo a partir de un número.
+     * @param decisor el número importante a partir del cuál se calculará
+     *        el ancho.
+     * @return el ancho del lienzo
+     */
+    private int calculaAncho(int decisor) {
+	switch (estructura) {
+	case PILA : return 330;
+	case COLA : return anchoCola(decisor);
+	case LISTA : return anchoLista(decisor);
+	case GRAFICA : return tamanoGrafica(decisor);
+	default : return anchoArbol(decisor);
 	}
     }
 
     /**
-     * Calcula el tamaño del lienzo para una pila a partir de
-     * su número de elementos.
-     * @param decisor el número de elementos en la pila.
+     * Calcula el alto del lienzo para una pila a partir de su número de
+     * elementos.
+     * @param decisor el número de elementos a partir del cuál se calculará
+     *        el alto del lienzo para la pila.
+     * @return el alto del lienzo para la pila.
      */
-    private void tamanoPila(int decisor) {
-	ancho = 330;
-	alto = 10;
-	alto += decisor * 70;
+    private int altoPila(int decisor) {
+	return (decisor * 70) + 10;
     }
 
     /**
-     * Calcula el tamaño del lienzo para una cola a partir de
-     * su número de elementos.
-     * @param decisor el número de elementos en la cola.
+     * Calcula el ancho del lienzo para una cola a partir de su número de
+     * elementos.
+     * @param decisor el número de elementos a partir del cuál se calculará
+     *        el ancho del lienzo para la cola.
+     * @return el ancho del lienzo para la cola.
      */
-    private void tamanoCola(int decisor) {
-	alto = 140;
-	ancho = 70;
-	ancho += decisor * 260; 
+    private int anchoCola(int decisor) {
+	return (decisor * 260) + 70;
     }
 
     /**
-     * Calcula el tamaño del lienzo para una lista a partir
-     * de su número de elementos.
-     * @param decisor el número de elementos en la lista.
+     * Calcula el ancho del lienzo para una lista a partir de su número de
+     * elementos.
+     * @param decisor el número de elementos a partir del cuál se calculará
+     *        el ancho del lienzo para la lista.
+     * @return el ancho del lienzo para la lista.
      */
-    private void tamanoLista(int decisor) {
-	alto = 140;
-	ancho = 80;
-	if (decisor > 0) {
-	    ancho += decisor * 350;
-	    ancho += 100;
-	}
+    private int anchoLista(int decisor) {
+	return decisor > 0 ? (decisor * 350) + 180 : 80;
     }
 
     /**
-     * Calcula el tamaño del lienzo para una gráfica a partir
-     * de su número de elementos.
-     * @param decisor el número de elementos de la gráfica.
+     * Calcula el tamaño del lienzo para una gráfica a partir de su
+     * número de elementos.
+     * @param decisor el número de elementos a partir del cuál se calculará
+     *        el ancho y el alto del lienzo para la gráfica.
+     * @return el ancho y el alto del lienzo para la gráfica.
      */
-    private void tamanoGrafica(int decisor) {
-	alto = 450;
+    private int tamanoGrafica(int decisor) {
 	double radio = 450;
 	radio /= 2;
 	radio /= Math.sin(Math.PI/decisor);
-	alto += (int) radio + 1;
-	alto *= 2;
-	ancho = alto;
+	int tamano = (int) Math.ceil(radio);
+	tamano += 450;
+	tamano *= 2;
+	return tamano;
     }
-
+    
     /**
-     * Calcula el tamaño del lienzo para un árbol binario a
-     * partir de su altura.
-     * @param decisor la altura del árbol.
+     * Calcula el alto del lienzo para un árbol binario a partir de su
+     * altura.
+     * @param decisor la altura del árbol a partir de la cuál se calculará
+     *        el alto del lienzo para el árbol.
+     * @return el alto del lienzo para el árbol
      */
-    private void tamanoArbol(int decisor) {
-	alto = 450;
-	if (decisor > 0)
-	    alto += 450 * decisor;
-	ancho = 450;
-	for (int i = 0; i < decisor; i++) {
-	    ancho *= 2;
-	}
+    private int altoArbol(int decisor) {
+	return 450 * (decisor + 1);
+    }
+    
+    /**
+     * Calcula el ancho del lienzo para un árbol binario a partir de su
+     * altura.
+     * @param decisor la altura del árbol a partir de la cuál se calculará
+     *        el ancho del lienzo para el árbol.
+     * @return el ancho del lienzo para el árbol
+     */
+    private int anchoArbol(int decisor) {
+	return (int) (450 * Math.pow(2, decisor));
     }
 }

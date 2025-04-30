@@ -21,14 +21,24 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	private VerticeGrafica<Integer> vertice;
 
 	/**
-	 * El número del vértice.
+	 * Constructor para graficadoras de vértices de gráficas.
+	 * @param lienzo el lienzo en que se graficará el vértice.
+	 * @param vertice el vértice.
+	 * @param i el índice del vértice entre el número de vértices.
 	 */
-	private int indice;
-
-	/**
-	 * La lista de graficadoras de vértices.
-	 */
-	private Lista<GraficadoraVerticeGrafica> gvgs;
+	private GraficadoraVerticeGrafica(Lienzo lienzo, VerticeGrafica<Integer> vertice, double i) {
+	    this.lienzo = lienzo;
+	    this.vertice = vertice;
+	    int radio = lienzo.getAncho();
+	    radio /= 2;
+	    radio -= 450;
+	    double angulo = 2 * Math.PI;
+	    angulo *= i;
+	    x = lienzo.getAncho() / 2;
+	    x += (int) radio * Math.cos(angulo);
+	    y = lienzo.getAlto() / 2;
+	    y += (int) radio * Math.sin(angulo);
+	}
 
 	/**
 	 * Regresa el elemento del vértice.
@@ -39,19 +49,31 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	}
 
 	/**
-	 * Regresa la cadena del vértice y sus aristas adyacentes.
-	 * @return la cadena del vértice y sus aristas adyacentes.
+	 * Regresa la coordenada en x del vértice.
+	 * @return la coordenada en x del vértice.
 	 */
-	@Override protected String grafica() {
-
+	private int getX() {
+	    return x;
 	}
 
 	/**
-	 * Regresa la cadena del vértice.
-	 * @return la cadena del vértice.
+	 * Regresa la coordenada en y del vértice.
+	 * @return la coordenada en y del vértice.
 	 */
-	@Override protected String vertice() {
+	private int getY() {
+	    return y;
+	}
 
+	/**
+	 * Regresa la cadena del vértice y sus aristas adyacentes.
+	 * @return la cadena del vértice y sus aristas adyacentes.
+	 */
+	@Override public String grafica() {
+	    String s = "";
+	    s += conecta();
+	    s += vertice();
+	    s += contenido();
+	    return s;
 	}
 	
 	/**
@@ -59,7 +81,11 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	 * @return la cadena del contenido del vértice.
 	 */
 	@Override protected String contenido() {
-
+	    String s = "";
+	    s += "<text fill='black' font-family='sans-serif' font-size='30' ";
+	    s += "text-anchor='middle' x='" + x + "' y='" + y + "'>";
+	    s += vertice.get() + "</text>\n";
+	    return s;
 	}
 
 	/**
@@ -67,7 +93,25 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	 * @return la cadena de las aristas del vértice.
 	 */
 	@Override protected String conecta() {
-	    
+	    String s= "";
+	    for (VerticeGrafica<Integer> vecino : vertice.vecinos()) {
+		GraficadoraVerticeGrafica gvg = buscaGVG(vecino.get());
+		s += linea(x, y, gvg.getX(), gvg.getY());
+	    }
+	    return s;
+	}
+
+	/**
+	 * Regresa la graficadora correspondiente al elemento buscado.
+	 * @param elemento el elemento a buscar.
+	 * @return la graficadora correspondiente al vértice con el elemento buscado.
+	 */
+	private GraficadoraVerticeGrafica buscaGVG(Integer elemento) {
+	    for (GraficadoraVerticeGrafica gvg : gvgs) {
+		if (elemento.equals(gvg.get()))
+		    return gvg;
+	    }
+	    return null;
 	}
     }
     
@@ -77,9 +121,14 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
     private Grafica<Integer> grafica;
     
     /**
-     * Lista de los vértices que no son adyacentes a ningún otro.
+     * Lista de los elementos que pertenecen a vértices que no son adyacentes a ningún otro.
      */
-    private Lista<GraficadoraVerticeGrafica> separados;
+    private Lista<Integer> separados;
+    
+    /**
+     * La lista de graficadoras de vértices.
+     */
+    private Lista<GraficadoraVerticeGrafica> gvgs;
 
     /**
      * Constructor para graficadoras de gráficas.
@@ -89,6 +138,7 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	if (lista.getLongitud() % 2 != 0)
 	    throw new ExcepcionGraficaNoValida("El número de elementos no es par.");
 	separados = new Lista<>();
+	gvgs = new Lista<>();
 	grafica = new Grafica<>();
 	Lista<Integer> elementos = verificaElementos(lista);
 	creaVertices(elementos);
@@ -102,7 +152,7 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
      */
     private void creaVertices(Lista<Integer> elementos) {
 	for (Integer i : elementos)
-	    if (!grafica.contains(i))
+	    if (!grafica.contiene(i))
 		grafica.agrega(i);
     }
 
@@ -116,14 +166,14 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	    Integer a = iterador.next();
 	    Integer b = iterador.next();
 	    if (a.equals(b))
-		if (separados.contains(a))
+		if (separados.contiene(a))
 		    throw new ExcepcionGraficaNoValida("No se puede desconectar dos veces a un vértice.");
 		else if (grafica.vertice(a).getGrado() > 0)
 		    throw new ExcepcionGraficaNoValida("No se puede desconectar un vértice que fue previamente conectado.");
 		else
 		    separados.agrega(a);
 	    else
-		if (separados.contains(a) || separados.contains(b))
+		if (separados.contiene(a) || separados.contiene(b))
 		    throw new ExcepcionGraficaNoValida("No se puede conectar a un vértice que fue previamente desconectado.");
 		else
 		    try {
@@ -140,13 +190,14 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
      */
     @Override public String grafica() {
 	String s = "";
-	Lista<GraficadoraVerticeGrafica> gvgs = new Lista<>();
 	int c = 0;
 	for (Integer integer : grafica)
-	    gvgs.agrega(new GraficadoraVerticeGrafica(gvgs, c++, grafica.vertice(integer), lienzo));
+	    gvgs.agrega(new GraficadoraVerticeGrafica(lienzo, grafica.vertice(integer),
+						      (((double) c++) / grafica.getElementos())));
 	for (GraficadoraVerticeGrafica gvg : gvgs) {
 	    s += gvg.grafica();
 	    grafica.elimina(gvg.get());
+	    gvgs.elimina(gvg);
 	}
 	return s;
     }

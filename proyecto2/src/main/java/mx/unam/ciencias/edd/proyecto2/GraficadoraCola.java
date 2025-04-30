@@ -1,6 +1,6 @@
 package mx.unam.ciencias.edd.proyecto2;
 
-import mx.unam.ciencias.Lista;
+import mx.unam.ciencias.edd.Lista;
 
 /**
  * Clase para graficadoras de colas.
@@ -42,10 +42,10 @@ public class GraficadoraCola extends GraficadoraSucesion {
      */
     @Override protected String caja(int i) {
 	int x = 40;
-	x += 270 * i;
+	x += i * 270;
 	String s = "";
-	s += "<rect width=\"250\" height=\"60\" x=\"40\" ";
-	s += "y=\"" + x + "\" fill=\"white\" stroke=\"black\" ";
+	s += "<rect width=\"250\" height=\"60\" y=\"40\" ";
+	s += "x=\"" + x + "\" fill=\"white\" stroke=\"black\" ";
 	s += "stroke-width=\"3\"/>\n";
 	return s;
     }
@@ -58,6 +58,12 @@ public class GraficadoraCola extends GraficadoraSucesion {
      * @return la cadena del contenido.
      */
     @Override protected String contenido(Integer elemento, int i) {
-	
+	int x = 165;
+	x += i * 270;
+	String s = "";
+	s += "<text fill='black' font-family='sans-serif' ";
+	s += "font-size='30' x='" + x + "' y='80' ";
+	s += "text-anchor='middle'>" + elemento + "</text>\n";
+	return s;
     }
 }
