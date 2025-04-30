@@ -1,5 +1,6 @@
 package mx.unam.ciencias.edd.proyecto2;
 
+import java.util.NoSuchElementException;
 import mx.unam.ciencias.edd.ArbolAVL;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
@@ -33,7 +34,8 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	protected GraficadoraVerticeArbolAVL(VerticeArbolBinario<Integer> vertice,
 					     int num, int den, int y, Lienzo lienzo) {
 	    super(vertice, num, den, y, lienzo);
-	    esIzquierdo = buscaLado();
+	    if (vertice != null)
+		esIzquierdo = buscaLado();
 	}
 
 	/**
@@ -96,7 +98,11 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
      */
     public GraficadoraArbolAVL(Lista<String> lista) throws IllegalArgumentException {
 	arbol = new ArbolAVL<Integer>(verificaElementos(lista));
-	raiz = arbol.raiz();
+	try {
+	    raiz = arbol.raiz();
+	} catch (NoSuchElementException nsee) {
+	    raiz = null;
+	}
 	lienzo = new Lienzo(Estructura.ARN, arbol.altura());
     }
     

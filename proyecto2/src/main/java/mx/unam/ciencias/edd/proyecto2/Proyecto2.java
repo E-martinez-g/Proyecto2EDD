@@ -39,8 +39,7 @@ public class Proyecto2 {
 	try {
 	    new Fabrica(piezas).crea();
 	} catch (IllegalArgumentException iae) {
-	    System.err.println(iae.getMessage());
-	    uso();
+	    System.err.println("\n" + iae.getMessage());
 	}
     }
 

@@ -142,7 +142,7 @@ public class Lienzo {
      * @return el alto del lienzo para el árbol
      */
     private int altoArbol(int decisor) {
-	return 450 * (decisor + 1);
+	return decisor >= 0 ? 450 * (decisor + 1) : 450;
     }
     
     /**

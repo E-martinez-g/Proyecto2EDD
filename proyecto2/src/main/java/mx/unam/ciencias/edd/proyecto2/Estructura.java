@@ -37,7 +37,7 @@ public enum Estructura {
 	case "Cola" : return Estructura.COLA;
 	case "ArbolBinarioCompleto" : return Estructura.ABC;
 	case "ArbolBinarioOrdenado" : return Estructura.ABO;
-	case "ArbolRojiNegro" : return Estructura.ARN;
+	case "ArbolRojinegro" : return Estructura.ARN;
 	case "ArbolAVL" : return Estructura.AAVL;
 	case "Grafica" : return Estructura.GRAFICA;
 	default : return null;

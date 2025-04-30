@@ -1,5 +1,6 @@
 package mx.unam.ciencias.edd.proyecto2;
 
+import java.util.NoSuchElementException;
 import mx.unam.ciencias.edd.ArbolRojinegro;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
@@ -33,7 +34,8 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
 	protected GraficadoraVerticeArbolRojinegro(VerticeArbolBinario<Integer> vertice,
 						   int num, int den, int y, Lienzo lienzo) {
 	    super(vertice, num, den, y, lienzo);
-	    color = setColor();
+	    if (vertice != null)
+		color = setColor();
 	}
 	
 	/**
@@ -78,7 +80,11 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
      */
     public GraficadoraArbolRojinegro(Lista<String> lista) throws IllegalArgumentException {
 	arbol = new ArbolRojinegro<Integer>(verificaElementos(lista));
-	raiz = arbol.raiz();
+	try {
+	    raiz = arbol.raiz();
+	} catch (NoSuchElementException nsee) {
+	    raiz = null;
+	}
 	lienzo = new Lienzo(Estructura.ARN, arbol.altura());
     }
 

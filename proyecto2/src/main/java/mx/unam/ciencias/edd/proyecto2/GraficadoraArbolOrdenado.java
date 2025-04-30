@@ -1,5 +1,6 @@
 package mx.unam.ciencias.edd.proyecto2;
 
+import java.util.NoSuchElementException;
 import mx.unam.ciencias.edd.ArbolBinarioOrdenado;
 import mx.unam.ciencias.edd.ArbolBinario;
 import mx.unam.ciencias.edd.VerticeArbolBinario;
@@ -15,7 +16,11 @@ public class GraficadoraArbolOrdenado extends GraficadoraArbol {
      */
     public GraficadoraArbolOrdenado(Lista<String> lista) throws IllegalArgumentException {
 	arbol = new ArbolBinarioOrdenado<Integer>(verificaElementos(lista));
-	raiz = arbol.raiz();
+	try {
+	    raiz = arbol.raiz();
+	} catch (NoSuchElementException nsee) {
+	    raiz = null;
+	}
 	lienzo = new Lienzo(Estructura.ABO, arbol.altura());
     }
 
