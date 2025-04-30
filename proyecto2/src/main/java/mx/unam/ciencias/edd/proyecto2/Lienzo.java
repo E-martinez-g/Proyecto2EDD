@@ -103,7 +103,7 @@ public class Lienzo {
      * @return el ancho del lienzo para la cola.
      */
     private int anchoCola(int decisor) {
-	return (decisor * 260) + 70;
+	return (decisor * 270) + 70;
     }
 
     /**

@@ -62,9 +62,15 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	 */
 	private String ayb() {
 	    int altura = vertice.altura();
-	    int balance = altura(vertice.izquierdo()) - altura(vertice.derecho());
+	    int hI = -1;
+	    int hD = -1;
+	    if (vertice.hayIzquierdo())
+		hI = vertice.izquierdo().altura();
+	    if (vertice.hayDerecho())
+		hD = vertice.derecho().altura();
+	    int balance = hI - hD;
 	    String s = "";
-	    s += "<text fill='black' font-family='sans-serif' font-size='15' ";
+	    s += "<text fill='black' font-family='sans-serif' font-size='20' ";
 	    s += "text-anchor='middle' y='" + (y - 125) + "' ";
 	    if (esIzquierdo)
 		s += "x='" + (x - 125) + "'>";
@@ -80,7 +86,11 @@ public class GraficadoraArbolAVL extends GraficadoraArbol {
 	 *         <code>false</code> en otro caso.
 	 */
 	private boolean buscaLado() {
-	    return vertice.padre() == null || vertice.padre().izquierdo() == vertice;
+	    try {
+		return vertice.padre() == null || vertice.padre().izquierdo() == vertice;
+	    } catch (NoSuchElementException nsee) {
+		return true;
+	    }
 	}
 
 	/**

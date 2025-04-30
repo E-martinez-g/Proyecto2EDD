@@ -58,7 +58,7 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
 	@Override protected String vertice() {
 	    String s = "";
 	    s += "<circle r='125' fill='" + color;
-	    s += "cx='" + x + "' cy='" + y + "' />\n";
+	    s += "' cx='" + x + "' cy='" + y + "' />\n";
 	    return s;
 	}
 	
@@ -69,8 +69,8 @@ public class GraficadoraArbolRojinegro extends GraficadoraArbol {
 	@Override protected String contenido() {
 	    String s = "";
 	    s += "<text fill='white' font-family='sans-serif' ";
-	    s += "font-size='30' text-anchor='middle' x='" + x;
-	    s += "' y='" + y + "'>" + vertice.get() + "</text>\n";
+	    s += "font-size='40' text-anchor='middle' x='" + x;
+	    s += "' y='" + (y + 20) + "'>" + vertice.get() + "</text>\n";
 	    return s;
 	}
     }

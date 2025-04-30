@@ -27,7 +27,7 @@ public abstract class GraficadoraVertice extends Graficadora {
     protected String linea(int x1, int y1, int x2, int y2) {
 	String s = "";
 	s += "<line stroke='black' stroke-width='3' x1='" + x1 + "' ";
-	s += "y1='" + y1 + "' x2='" + x2 + "' y2='" + y2 + "' /\n>";
+	s += "y1='" + y1 + "' x2='" + x2 + "' y2='" + y2 + "' />\n";
 	return s;
     }
 

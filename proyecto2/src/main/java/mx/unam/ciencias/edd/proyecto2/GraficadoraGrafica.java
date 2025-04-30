@@ -34,6 +34,7 @@ public class GraficadoraGrafica extends GraficadoraEstructura {
 	    radio -= 450;
 	    double angulo = 2 * Math.PI;
 	    angulo *= i;
+	    angulo += (3 * Math.PI) / 2;
 	    x = lienzo.getAncho() / 2;
 	    x += (int) radio * Math.cos(angulo);
 	    y = lienzo.getAlto() / 2;
